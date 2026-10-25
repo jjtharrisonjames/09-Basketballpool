@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NCAA Basketball Pool Rankings 2026-27</title>
+<title>NCAA Basketball Pool Rankings 2026-27 (v2)</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Courier New',monospace;font-size:11px;color:#111;background:#fff;padding:20px;max-width:900px;margin:0 auto}
+body{font-family:'Courier New',monospace;font-size:11px;color:#111;background:#fff;padding:20px;max-width:960px;margin:0 auto}
 h1{font-size:17px;font-weight:bold;text-align:center;margin-bottom:3px;letter-spacing:1px}
 .sub{text-align:center;font-size:9px;color:#777;margin-bottom:14px}
+.badge{display:inline-block;background:#444;color:#fff;padding:1px 6px;font-size:8px;margin-left:5px;border-radius:3px;letter-spacing:1px}
 .tier-header{padding:5px 10px;color:#fff;font-size:12px;font-weight:bold;letter-spacing:3px;margin:14px 0 3px}
 .team{cursor:pointer;border-bottom:1px solid #e8e8e8;padding:3px 2px;user-select:none}
 .team:hover{background:#f9f9f9}
 .team.out{opacity:.35;text-decoration:line-through}
 .row1{display:flex;align-items:center;gap:6px}
 .rk{width:30px;text-align:right;font-weight:bold;color:#555;flex-shrink:0}
-.nm{width:210px;font-weight:bold;flex-shrink:0}
-.cf{width:75px;color:#666;flex-shrink:0}
+.nm{width:220px;font-weight:bold;flex-shrink:0}
+.cf{width:80px;color:#666;flex-shrink:0}
 .bar-wrap{width:80px;height:7px;background:#e0e0e0;flex-shrink:0}
 .bar-fill{height:100%;background:#333}
-.sc{width:48px;color:#333;flex-shrink:0}
+.sc{width:52px;color:#333;flex-shrink:0}
 .row2{font-size:9px;color:#888;padding-left:36px;margin-top:1px}
 .gem-tag{color:#b8860b;font-weight:bold}
+.portal-tag{color:#1976d2;font-weight:bold}
 .wt-section{margin-top:28px;border-top:2px solid #222;padding-top:12px}
 .wt-section h2{font-size:13px;margin-bottom:8px;letter-spacing:1px}
 table.wt{border-collapse:collapse;font-size:10px;width:100%}
 table.wt th,table.wt td{border:1px solid #ccc;padding:4px 8px;text-align:left}
 table.wt th{background:#f0f0f0;font-weight:bold}
-.note{margin-top:10px;font-size:9px;color:#999}
+.note{margin-top:10px;font-size:9px;color:#999;line-height:1.5}
 @media print{
   body{padding:8px;font-size:9px}
   h1{font-size:13px}
@@ -39,345 +41,403 @@ table.wt th{background:#f0f0f0;font-weight:bold}
 </style>
 </head>
 <body>
-<h1>NCAA BASKETBALL POOL RANKINGS 2026-27</h1>
-<p class="sub">Click any team to strike through when drafted &mdash; Data: 2025-26 season + 2026-27 preseason projections</p>
+<h1>NCAA BASKETBALL POOL RANKINGS 2026-27 <span class="badge">v2</span></h1>
+<p class="sub">Click any team to strike through when drafted &mdash; Anchored to KenPom/Torvik 2026-27 projections &amp; 2026 portal rankings</p>
 <div id="list"></div>
 <div class="wt-section">
-  <h2>ALGORITHM WEIGHTS</h2>
+  <h2>ALGORITHM WEIGHTS (v2)</h2>
   <table class="wt">
     <tr><th>Factor</th><th>Weight</th><th>Description</th></tr>
-    <tr><td>Prior Wins</td><td>20%</td><td>2025-26 total wins (regular season + all tournaments)</td></tr>
-    <tr><td>Returning Players</td><td>20%</td><td>Key contributors returning for 2026-27 (accounts for transfers &amp; NBA draft)</td></tr>
-    <tr><td>Hidden Gem Potential</td><td>15%</td><td>Teams outside top 20 in weak conferences projected for 20+ wins &mdash; high value, low draft cost</td></tr>
-    <tr><td>Senior Starters</td><td>10%</td><td>Number of projected senior starters (experienced rosters win more close games)</td></tr>
-    <tr><td>Strength of Schedule</td><td>10%</td><td>Quality of competition (power conference = proven against tough opponents)</td></tr>
-    <tr><td>Coaching Stability</td><td>10%</td><td>Head coach tenure &amp; program continuity (new hires penalized)</td></tr>
-    <tr><td>Recruiting Class</td><td>10%</td><td>2026 national recruiting class ranking</td></tr>
-    <tr><td>Injuries</td><td>5%</td><td>Known injury concerns entering season (10 = fully healthy)</td></tr>
-    <tr><td><strong>Tiebreaker</strong></td><td colspan="2">Prior wins (raw total)</td></tr>
+    <tr><td>Projected Wins (2026-27)</td><td>20%</td><td>Forward-looking win projection from KenPom/Torvik models</td></tr>
+    <tr><td>Returning Players</td><td>17%</td><td>Minutes/production returning from 2025-26 roster</td></tr>
+    <tr><td>Hidden Gem Potential</td><td>15%</td><td>Teams outside top 25 projected for 20+ wins in weak conferences</td></tr>
+    <tr><td>Transfer Portal Class</td><td>10%</td><td>2026 transfer portal haul ranking (NEW in v2)</td></tr>
+    <tr><td>Coaching Stability</td><td>10%</td><td>Head coach tenure &amp; continuity (new 2026 hires penalized)</td></tr>
+    <tr><td>Senior Starters</td><td>8%</td><td>Projected senior starters (experience in close games)</td></tr>
+    <tr><td>Strength of Schedule</td><td>8%</td><td>Quality of competition faced</td></tr>
+    <tr><td>Recruiting Class (HS)</td><td>7%</td><td>2026 high school recruiting class rank</td></tr>
+    <tr><td>Injuries</td><td>5%</td><td>Known injury concerns (10 = fully healthy)</td></tr>
+    <tr><td><strong>Tiebreaker</strong></td><td colspan="2">Projected 2026-27 win total</td></tr>
   </table>
-  <p class="note">Scores 0&ndash;10 per factor. Composite score = weighted sum &times; 10, shown as /100. Tiers: Elite &ge;65 &bull; Strong 50&ndash;64 &bull; Mid 35&ndash;49 &bull; Weak &lt;35</p>
+  <p class="note">
+    <strong>v2 changes from v1:</strong> Replaced "Prior Wins" with forward-looking "Projected Wins" (so champ Michigan drops with heavy roster turnover). Added Transfer Portal factor (Tennessee, Louisville, Texas, Indiana, Xavier, Miami benefit most). Recalibrated gem scores against KenPom/Torvik projections. Applied coaching penalties to 2026 new hires (UNC, Villanova, Miami, Utah, FSU, Minnesota, Iowa, Kansas State, Georgia Tech, NC State).<br>
+    <strong>Tags:</strong> &star;GEM = top hidden-gem value pick &nbsp;&bull;&nbsp; &diams;PORTAL = elite transfer class<br>
+    Scores 0&ndash;10 per factor &rarr; composite &times; 10 displayed as /100. Tiers: Elite &ge;65 &bull; Strong 50&ndash;64 &bull; Mid 35&ndash;49 &bull; Weak &lt;35
+  </p>
 </div>
 <script>
-// n=name, c=conf, w=wins(0-10), r=returning(0-10), g=gem(0-10), s=seniors(0-10),
-// q=sos(0-10), h=coaching(0-10), e=recruiting(0-10), i=injuries(0-10), x=rawWins
+// p=projWins, r=returning, g=gem, t=transferPortal, h=coaching, s=seniors, q=sos, e=recruit, i=injuries
+// xp=projected 2026-27 win total, xw=actual 2025-26 wins
 const T=[
-// ---- BIG TEN ----
-{n:"Michigan Wolverines",c:"Big Ten",w:10,r:5,g:0,s:5,q:9,h:8,e:8,i:8,x:37},
-{n:"Illinois Fighting Illini",c:"Big Ten",w:8,r:7,g:0,s:8,q:9,h:9,e:8,i:9,x:28},
-{n:"Michigan State Spartans",c:"Big Ten",w:8,r:7,g:0,s:7,q:9,h:10,e:8,i:9,x:27},
-{n:"Purdue Boilermakers",c:"Big Ten",w:8,r:6,g:0,s:7,q:9,h:8,e:7,i:8,x:28},
-{n:"Nebraska Cornhuskers",c:"Big Ten",w:7,r:7,g:0,s:7,q:8,h:7,e:6,i:9,x:28},
-{n:"Ohio State Buckeyes",c:"Big Ten",w:7,r:6,g:0,s:6,q:9,h:7,e:6,i:8,x:23},
-{n:"Indiana Hoosiers",c:"Big Ten",w:6,r:7,g:0,s:7,q:8,h:7,e:7,i:9,x:22},
-{n:"Wisconsin Badgers",c:"Big Ten",w:6,r:7,g:0,s:7,q:8,h:8,e:6,i:9,x:22},
-{n:"Maryland Terrapins",c:"Big Ten",w:6,r:6,g:0,s:6,q:8,h:7,e:7,i:8,x:21},
-{n:"USC Trojans",c:"Big Ten",w:7,r:6,g:0,s:5,q:8,h:7,e:7,i:8,x:24},
-{n:"UCLA Bruins",c:"Big Ten",w:7,r:6,g:0,s:6,q:8,h:7,e:8,i:8,x:24},
-{n:"Oregon Ducks",c:"Big Ten",w:6,r:6,g:0,s:6,q:8,h:7,e:7,i:8,x:21},
-{n:"Penn State Nittany Lions",c:"Big Ten",w:6,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:21},
-{n:"Iowa Hawkeyes",c:"Big Ten",w:5,r:5,g:0,s:5,q:8,h:4,e:5,i:8,x:18},
-{n:"Minnesota Golden Gophers",c:"Big Ten",w:5,r:5,g:0,s:5,q:8,h:4,e:5,i:8,x:18},
-{n:"Washington Huskies",c:"Big Ten",w:5,r:6,g:0,s:6,q:7,h:6,e:6,i:8,x:18},
-{n:"Northwestern Wildcats",c:"Big Ten",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:17},
-{n:"Rutgers Scarlet Knights",c:"Big Ten",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:17},
-// ---- ACC ----
-{n:"Duke Blue Devils",c:"ACC",w:10,r:6,g:0,s:5,q:9,h:9,e:9,i:8,x:35},
-{n:"Virginia Cavaliers",c:"ACC",w:7,r:8,g:0,s:8,q:8,h:7,e:7,i:9,x:25},
-{n:"Louisville Cardinals",c:"ACC",w:7,r:7,g:0,s:7,q:8,h:7,e:8,i:8,x:24},
-{n:"Miami Hurricanes",c:"ACC",w:7,r:6,g:0,s:6,q:8,h:5,e:7,i:8,x:24},
-{n:"NC State Wolfpack",c:"ACC",w:7,r:5,g:0,s:5,q:8,h:4,e:7,i:8,x:23},
-{n:"North Carolina Tar Heels",c:"ACC",w:7,r:6,g:0,s:5,q:8,h:4,e:8,i:8,x:23},
-{n:"Clemson Tigers",c:"ACC",w:6,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:20},
-{n:"Pittsburgh Panthers",c:"ACC",w:6,r:6,g:0,s:6,q:7,h:7,e:6,i:8,x:20},
-{n:"Syracuse Orange",c:"ACC",w:6,r:7,g:0,s:7,q:7,h:8,e:6,i:9,x:21},
-{n:"Notre Dame Fighting Irish",c:"ACC",w:5,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:18},
-{n:"Wake Forest Demon Deacons",c:"ACC",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:17},
-{n:"Florida State Seminoles",c:"ACC",w:5,r:6,g:0,s:6,q:8,h:4,e:6,i:8,x:17},
-{n:"Georgia Tech Yellow Jackets",c:"ACC",w:5,r:5,g:0,s:5,q:8,h:4,e:6,i:8,x:17},
-{n:"Stanford Cardinal",c:"ACC",w:5,r:6,g:0,s:6,q:7,h:7,e:6,i:8,x:18},
-{n:"SMU Mustangs",c:"ACC",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:17},
-{n:"Boston College Eagles",c:"ACC",w:5,r:6,g:0,s:6,q:7,h:6,e:5,i:8,x:17},
-{n:"Virginia Tech Hokies",c:"ACC",w:5,r:6,g:0,s:6,q:7,h:6,e:5,i:9,x:17},
-{n:"California Golden Bears",c:"ACC",w:4,r:5,g:0,s:5,q:7,h:6,e:5,i:8,x:14},
-// ---- BIG 12 ----
-{n:"Arizona Wildcats",c:"Big 12",w:10,r:6,g:0,s:6,q:9,h:8,e:9,i:8,x:36},
-{n:"Houston Cougars",c:"Big 12",w:8,r:7,g:0,s:7,q:9,h:9,e:7,i:9,x:30},
-{n:"Kansas Jayhawks",c:"Big 12",w:8,r:6,g:0,s:6,q:9,h:10,e:9,i:8,x:27},
-{n:"Iowa State Cyclones",c:"Big 12",w:7,r:7,g:0,s:7,q:9,h:8,e:7,i:9,x:25},
-{n:"Texas Longhorns",c:"Big 12",w:8,r:7,g:0,s:6,q:9,h:8,e:8,i:8,x:27},
-{n:"Texas Tech Red Raiders",c:"Big 12",w:7,r:6,g:0,s:7,q:9,h:7,e:7,i:8,x:26},
-{n:"BYU Cougars",c:"Big 12",w:7,r:7,g:0,s:7,q:8,h:8,e:6,i:9,x:24},
-{n:"Baylor Bears",c:"Big 12",w:7,r:6,g:0,s:6,q:9,h:8,e:8,i:8,x:24},
-{n:"Cincinnati Bearcats",c:"Big 12",w:6,r:6,g:0,s:6,q:7,h:7,e:6,i:8,x:20},
-{n:"Oklahoma State Cowboys",c:"Big 12",w:6,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:21},
-{n:"West Virginia Mountaineers",c:"Big 12",w:5,r:6,g:0,s:6,q:8,h:7,e:5,i:9,x:18},
-{n:"Kansas State Wildcats",c:"Big 12",w:6,r:5,g:0,s:5,q:8,h:4,e:6,i:8,x:21},
-{n:"TCU Horned Frogs",c:"Big 12",w:5,r:6,g:0,s:6,q:8,h:7,e:5,i:9,x:18},
-{n:"UCF Knights",c:"Big 12",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:18},
-{n:"Arizona State Sun Devils",c:"Big 12",w:5,r:6,g:0,s:5,q:7,h:6,e:6,i:8,x:17},
-{n:"Colorado Buffaloes",c:"Big 12",w:5,r:6,g:0,s:5,q:7,h:6,e:5,i:8,x:17},
-// ---- SEC ----
-{n:"Florida Gators",c:"SEC",w:8,r:8,g:0,s:7,q:9,h:8,e:8,i:9,x:28},
-{n:"Tennessee Volunteers",c:"SEC",w:8,r:7,g:0,s:7,q:9,h:9,e:8,i:9,x:27},
-{n:"Alabama Crimson Tide",c:"SEC",w:7,r:6,g:0,s:5,q:9,h:8,e:8,i:8,x:24},
-{n:"Arkansas Razorbacks",c:"SEC",w:7,r:7,g:0,s:6,q:9,h:8,e:10,i:8,x:24},
-{n:"Auburn Tigers",c:"SEC",w:7,r:5,g:0,s:5,q:9,h:8,e:8,i:8,x:23},
-{n:"Kentucky Wildcats",c:"SEC",w:7,r:5,g:0,s:4,q:9,h:7,e:9,i:8,x:23},
-{n:"Vanderbilt Commodores",c:"SEC",w:7,r:7,g:0,s:7,q:8,h:7,e:7,i:9,x:25},
-{n:"Mississippi State Bulldogs",c:"SEC",w:5,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:18},
-{n:"Ole Miss Rebels",c:"SEC",w:6,r:6,g:0,s:6,q:8,h:7,e:7,i:8,x:21},
-{n:"Missouri Tigers",c:"SEC",w:6,r:6,g:0,s:6,q:8,h:7,e:7,i:8,x:20},
-{n:"LSU Tigers",c:"SEC",w:6,r:6,g:0,s:6,q:8,h:7,e:7,i:8,x:20},
-{n:"Texas A&M Aggies",c:"SEC",w:5,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:18},
-{n:"Oklahoma Sooners",c:"SEC",w:5,r:6,g:0,s:6,q:8,h:7,e:6,i:8,x:18},
-{n:"South Carolina Gamecocks",c:"SEC",w:5,r:6,g:0,s:6,q:7,h:7,e:6,i:8,x:17},
-{n:"Georgia Bulldogs",c:"SEC",w:5,r:5,g:0,s:5,q:8,h:7,e:6,i:8,x:17},
-// ---- BIG EAST ----
-{n:"UConn Huskies",c:"Big East",w:9,r:5,g:0,s:6,q:9,h:9,e:8,i:8,x:32},
-{n:"St. John's Red Storm",c:"Big East",w:8,r:7,g:0,s:7,q:8,h:8,e:7,i:9,x:27},
-{n:"Marquette Golden Eagles",c:"Big East",w:7,r:6,g:0,s:6,q:8,h:8,e:7,i:8,x:24},
-{n:"Creighton Bluejays",c:"Big East",w:7,r:7,g:0,s:7,q:8,h:8,e:7,i:9,x:25},
-{n:"Villanova Wildcats",c:"Big East",w:6,r:5,g:0,s:6,q:8,h:6,e:7,i:9,x:21},
-{n:"Xavier Musketeers",c:"Big East",w:5,r:6,g:0,s:6,q:7,h:7,e:6,i:8,x:18},
-{n:"Providence Friars",c:"Big East",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:18},
-{n:"Seton Hall Pirates",c:"Big East",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:17},
-{n:"Georgetown Hoyas",c:"Big East",w:5,r:7,g:0,s:7,q:8,h:7,e:6,i:9,x:18},
-{n:"Butler Bulldogs",c:"Big East",w:5,r:6,g:0,s:6,q:7,h:7,e:5,i:9,x:17},
-{n:"DePaul Blue Demons",c:"Big East",w:3,r:5,g:0,s:5,q:6,h:6,e:4,i:8,x:11},
-// ---- HIDDEN GEMS / MID-MAJOR STARS ----
-{n:"Grand Canyon Antelopes",c:"WAC",w:8,r:8,g:9,s:8,q:5,h:8,e:5,i:9,x:27},
-{n:"Miami (OH) RedHawks",c:"MAC",w:9,r:7,g:8,s:7,q:4,h:7,e:4,i:9,x:32},
-{n:"Utah State Aggies",c:"MWC",w:8,r:8,g:8,s:8,q:6,h:7,e:5,i:9,x:27},
-{n:"Drake Bulldogs",c:"MVC",w:8,r:8,g:8,s:8,q:4,h:8,e:3,i:9,x:27},
-{n:"South Dakota State Jackrabbits",c:"Summit",w:8,r:8,g:8,s:7,q:4,h:7,e:3,i:9,x:27},
-{n:"Gonzaga Bulldogs",c:"WCC",w:7,r:7,g:6,s:7,q:7,h:10,e:7,i:9,x:26},
-{n:"San Diego State Aztecs",c:"MWC",w:7,r:7,g:7,s:7,q:6,h:8,e:5,i:9,x:25},
-{n:"New Mexico Lobos",c:"MWC",w:7,r:8,g:8,s:7,q:5,h:7,e:4,i:9,x:25},
-{n:"Dayton Flyers",c:"A-10",w:7,r:7,g:6,s:7,q:5,h:7,e:4,i:9,x:24},
-{n:"VCU Rams",c:"A-10",w:7,r:7,g:7,s:7,q:5,h:8,e:4,i:9,x:24},
-{n:"Saint Mary's Gaels",c:"WCC",w:7,r:7,g:7,s:8,q:5,h:7,e:4,i:9,x:24},
-{n:"Oral Roberts Golden Eagles",c:"Summit",w:7,r:7,g:8,s:7,q:3,h:7,e:3,i:9,x:24},
-{n:"High Point Panthers",c:"Big South",w:7,r:8,g:8,s:7,q:3,h:7,e:3,i:9,x:24},
-{n:"Vermont Catamounts",c:"Amer. East",w:7,r:7,g:7,s:7,q:3,h:7,e:2,i:9,x:24},
-{n:"Yale Bulldogs",c:"Ivy",w:7,r:7,g:7,s:7,q:4,h:7,e:3,i:9,x:24},
-{n:"Colgate Raiders",c:"Patriot",w:7,r:7,g:8,s:7,q:3,h:7,e:2,i:9,x:24},
-{n:"Winthrop Eagles",c:"Big South",w:7,r:7,g:7,s:7,q:3,h:7,e:3,i:9,x:23},
-{n:"Murray State Racers",c:"OVC",w:7,r:7,g:7,s:7,q:4,h:7,e:3,i:9,x:24},
-{n:"Belmont Bruins",c:"MVC",w:7,r:7,g:7,s:7,q:4,h:7,e:3,i:9,x:24},
-{n:"Loyola Chicago Ramblers",c:"MVC",w:7,r:7,g:7,s:7,q:4,h:7,e:3,i:9,x:23},
-{n:"Saint Louis Billikens",c:"A-10",w:6,r:7,g:7,s:7,q:5,h:7,e:4,i:9,x:22},
-{n:"Iona Gaels",c:"MAAC",w:7,r:7,g:7,s:7,q:3,h:7,e:3,i:9,x:23},
-{n:"Army Black Knights",c:"Patriot",w:6,r:7,g:6,s:7,q:3,h:7,e:2,i:9,x:21},
-{n:"Northern Iowa Panthers",c:"MVC",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:21},
-{n:"New Mexico State Aggies",c:"WAC",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:21},
-{n:"Louisiana Ragin' Cajuns",c:"Sun Belt",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:22},
-{n:"Florida Atlantic Owls",c:"CUSA",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:22},
-{n:"Princeton Tigers",c:"Ivy",w:6,r:7,g:6,s:7,q:4,h:7,e:3,i:9,x:21},
-{n:"Wright State Raiders",c:"Horizon",w:6,r:6,g:6,s:6,q:3,h:7,e:2,i:9,x:21},
-{n:"North Dakota State Bison",c:"Summit",w:6,r:6,g:6,s:6,q:3,h:7,e:2,i:9,x:22},
-{n:"Montana Grizzlies",c:"Big Sky",w:6,r:6,g:6,s:6,q:3,h:7,e:2,i:9,x:21},
-{n:"UC Irvine Anteaters",c:"Big West",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:22},
-{n:"Hofstra Pride",c:"CAA",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:21},
-{n:"Memphis Tigers",c:"AAC",w:6,r:6,g:5,s:6,q:6,h:7,e:7,i:8,x:21},
-{n:"Wichita State Shockers",c:"AAC",w:6,r:6,g:5,s:6,q:5,h:7,e:4,i:9,x:20},
-{n:"Davidson Wildcats",c:"A-10",w:6,r:6,g:5,s:6,q:5,h:7,e:3,i:9,x:20},
-{n:"St. Bonaventure Bonnies",c:"A-10",w:6,r:6,g:5,s:7,q:5,h:7,e:3,i:9,x:20},
-{n:"Duquesne Dukes",c:"A-10",w:6,r:6,g:5,s:6,q:5,h:7,e:3,i:9,x:20},
-{n:"Colorado State Rams",c:"MWC",w:6,r:6,g:5,s:6,q:5,h:7,e:3,i:9,x:20},
-{n:"UNLV Rebels",c:"MWC",w:6,r:6,g:5,s:6,q:5,h:7,e:4,i:8,x:21},
-{n:"UAB Blazers",c:"CUSA",w:6,r:6,g:5,s:6,q:5,h:7,e:3,i:9,x:20},
-{n:"Bowling Green Falcons",c:"MAC",w:6,r:6,g:6,s:6,q:3,h:6,e:2,i:9,x:21},
-{n:"Kent State Golden Flashes",c:"MAC",w:6,r:6,g:6,s:6,q:3,h:6,e:2,i:9,x:20},
-{n:"Northeastern Huskies",c:"CAA",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:18},
-{n:"Indiana State Sycamores",c:"MVC",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:18},
-{n:"Bradley Braves",c:"MVC",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:17},
-{n:"Illinois State Redbirds",c:"MVC",w:5,r:6,g:5,s:6,q:4,h:6,e:2,i:9,x:17},
-{n:"Boise State Broncos",c:"MWC",w:5,r:6,g:5,s:6,q:5,h:7,e:4,i:9,x:18},
-{n:"Nevada Wolf Pack",c:"MWC",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:18},
-{n:"Air Force Falcons",c:"MWC",w:5,r:6,g:5,s:7,q:5,h:7,e:3,i:9,x:18},
-{n:"Fresno State Bulldogs",c:"MWC",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:17},
-{n:"Wyoming Cowboys",c:"MWC",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:17},
-{n:"Richmond Spiders",c:"A-10",w:5,r:6,g:5,s:6,q:5,h:7,e:3,i:9,x:18},
-{n:"Rhode Island Rams",c:"A-10",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:18},
-{n:"George Mason Patriots",c:"A-10",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:18},
-{n:"UMass Minutemen",c:"A-10",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:17},
-{n:"Temple Owls",c:"AAC",w:5,r:6,g:5,s:6,q:6,h:6,e:4,i:9,x:17},
-{n:"Tulane Green Wave",c:"AAC",w:5,r:6,g:5,s:6,q:6,h:6,e:4,i:9,x:18},
-{n:"Tulsa Golden Hurricane",c:"AAC",w:5,r:6,g:5,s:6,q:5,h:6,e:3,i:9,x:17},
-{n:"Harvard Crimson",c:"Ivy",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:18},
-{n:"Penn Quakers",c:"Ivy",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:17},
-{n:"Dartmouth Big Green",c:"Ivy",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:17},
-{n:"Cornell Big Red",c:"Ivy",w:4,r:5,g:4,s:5,q:4,h:5,e:3,i:9,x:14},
-{n:"Columbia Lions",c:"Ivy",w:4,r:5,g:4,s:5,q:4,h:5,e:3,i:9,x:14},
-{n:"Brown Bears",c:"Ivy",w:4,r:5,g:4,s:5,q:4,h:5,e:3,i:9,x:13},
-{n:"Bucknell Bison",c:"Patriot",w:5,r:6,g:5,s:6,q:3,h:6,e:2,i:9,x:18},
-{n:"Lehigh Mountain Hawks",c:"Patriot",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Navy Midshipmen",c:"Patriot",w:5,r:6,g:5,s:6,q:3,h:6,e:2,i:9,x:18},
-{n:"Holy Cross Crusaders",c:"Patriot",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Lafayette Leopards",c:"Patriot",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Boston University Terriers",c:"Patriot",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:17},
-{n:"Quinnipiac Bobcats",c:"MAAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Saint Peter's Peacocks",c:"MAAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Fairfield Stags",c:"MAAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Siena Saints",c:"MAAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Manhattan Jaspers",c:"MAAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Rider Broncs",c:"MAAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:13},
-{n:"Marist Red Foxes",c:"MAAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Monmouth Hawks",c:"MAAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Niagara Purple Eagles",c:"MAAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Canisius Golden Griffins",c:"MAAC",w:3,r:4,g:3,s:4,q:3,h:5,e:2,i:8,x:11},
-{n:"Montana State Bobcats",c:"Big Sky",w:6,r:6,g:6,s:6,q:3,h:6,e:2,i:9,x:20},
-{n:"Weber State Wildcats",c:"Big Sky",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Northern Colorado Bears",c:"Big Sky",w:5,r:5,g:5,s:5,q:3,h:5,e:2,i:9,x:17},
-{n:"Eastern Washington Eagles",c:"Big Sky",w:5,r:5,g:5,s:5,q:3,h:5,e:2,i:9,x:17},
-{n:"Sacramento State Hornets",c:"Big Sky",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Idaho Vandals",c:"Big Sky",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Portland State Vikings",c:"Big Sky",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Southern Utah Thunderbirds",c:"Big Sky",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:13},
-{n:"Idaho State Bengals",c:"Big Sky",w:4,r:4,g:4,s:4,q:3,h:4,e:2,i:9,x:13},
-{n:"North Dakota State Bison",c:"Summit",w:6,r:6,g:6,s:6,q:3,h:7,e:2,i:9,x:22},
-{n:"South Dakota Coyotes",c:"Summit",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"North Dakota Fighting Hawks",c:"Summit",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Denver Pioneers",c:"Summit",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:18},
-{n:"Omaha Mavericks",c:"Summit",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Furman Paladins",c:"SoCon",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Wofford Terriers",c:"SoCon",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"East Tennessee State Buccaneers",c:"SoCon",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Chattanooga Mocs",c:"SoCon",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Samford Bulldogs",c:"SoCon",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Western Carolina Catamounts",c:"SoCon",w:3,r:4,g:3,s:4,q:3,h:5,e:2,i:9,x:11},
-{n:"VMI Keydets",c:"SoCon",w:3,r:4,g:3,s:4,q:3,h:5,e:2,i:8,x:11},
-{n:"Mercer Bears",c:"SoCon",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"The Citadel Bulldogs",c:"SoCon",w:3,r:4,g:3,s:4,q:3,h:4,e:2,i:9,x:10},
-{n:"UMBC Retrievers",c:"Amer. East",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Stony Brook Seawolves",c:"Amer. East",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Albany Great Danes",c:"Amer. East",w:5,r:5,g:5,s:5,q:3,h:5,e:2,i:9,x:17},
-{n:"UMass Lowell River Hawks",c:"Amer. East",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"New Hampshire Wildcats",c:"Amer. East",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Maine Black Bears",c:"Amer. East",w:3,r:4,g:3,s:4,q:3,h:5,e:2,i:9,x:11},
-{n:"Binghamton Bearcats",c:"Amer. East",w:3,r:4,g:3,s:4,q:3,h:4,e:2,i:9,x:10},
-{n:"Hartford Hawks",c:"Amer. East",w:3,r:4,g:3,s:4,q:3,h:4,e:2,i:9,x:10},
-{n:"Hofstra Pride",c:"CAA",w:6,r:6,g:6,s:6,q:4,h:7,e:3,i:9,x:21},
-{n:"Drexel Dragons",c:"CAA",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"Delaware Fightin Blue Hens",c:"CAA",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"Towson Tigers",c:"CAA",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"Northeastern Huskies",c:"CAA",w:5,r:6,g:5,s:6,q:4,h:6,e:3,i:9,x:18},
-{n:"William & Mary Tribe",c:"CAA",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:14},
-{n:"Elon Phoenix",c:"CAA",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:14},
-{n:"UNCW Seahawks",c:"CAA",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"Norfolk State Spartans",c:"MEAC",w:5,r:5,g:5,s:5,q:2,h:6,e:2,i:9,x:17},
-{n:"Morgan State Bears",c:"MEAC",w:5,r:5,g:5,s:5,q:2,h:6,e:2,i:9,x:17},
-{n:"Hampton Pirates",c:"MEAC",w:4,r:5,g:4,s:5,q:2,h:5,e:2,i:9,x:14},
-{n:"Coppin State Eagles",c:"MEAC",w:3,r:4,g:3,s:4,q:2,h:5,e:2,i:9,x:11},
-{n:"Delaware State Hornets",c:"MEAC",w:3,r:4,g:3,s:4,q:2,h:4,e:2,i:9,x:10},
-{n:"South Carolina State Bulldogs",c:"MEAC",w:3,r:4,g:3,s:4,q:2,h:5,e:2,i:9,x:11},
-{n:"Maryland Eastern Shore Hawks",c:"MEAC",w:2,r:3,g:2,s:3,q:2,h:4,e:2,i:8,x:7},
-{n:"Grambling Tigers",c:"SWAC",w:5,r:5,g:5,s:5,q:2,h:6,e:2,i:9,x:17},
-{n:"Southern Jaguars",c:"SWAC",w:5,r:5,g:5,s:5,q:2,h:6,e:2,i:9,x:17},
-{n:"Jackson State Tigers",c:"SWAC",w:5,r:5,g:5,s:5,q:2,h:6,e:2,i:9,x:16},
-{n:"Texas Southern Tigers",c:"SWAC",w:5,r:5,g:5,s:5,q:2,h:6,e:2,i:9,x:17},
-{n:"Prairie View A&M Panthers",c:"SWAC",w:5,r:5,g:5,s:5,q:2,h:5,e:2,i:9,x:17},
-{n:"Alabama A&M Bulldogs",c:"SWAC",w:4,r:4,g:4,s:4,q:2,h:5,e:2,i:9,x:12},
-{n:"Alabama State Hornets",c:"SWAC",w:4,r:4,g:4,s:4,q:2,h:5,e:2,i:9,x:13},
-{n:"Alcorn State Braves",c:"SWAC",w:4,r:4,g:4,s:4,q:2,h:5,e:2,i:9,x:13},
-{n:"Florida A&M Rattlers",c:"SWAC",w:4,r:4,g:4,s:4,q:2,h:5,e:2,i:9,x:13},
-{n:"Bethune-Cookman Wildcats",c:"SWAC",w:3,r:4,g:3,s:4,q:2,h:5,e:2,i:9,x:10},
-{n:"Mississippi Valley State Delta Devils",c:"SWAC",w:2,r:3,g:2,s:3,q:2,h:4,e:2,i:8,x:6},
-{n:"Akron Zips",c:"MAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Toledo Rockets",c:"MAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Ohio Bobcats",c:"MAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Buffalo Bulls",c:"MAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Ball State Cardinals",c:"MAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Western Michigan Broncos",c:"MAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Central Michigan Chippewas",c:"MAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Eastern Michigan Eagles",c:"MAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:13},
-{n:"Northern Illinois Huskies",c:"MAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Sam Houston Bearkats",c:"WAC",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:17},
-{n:"Abilene Christian Wildcats",c:"WAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Stephen F. Austin Lumberjacks",c:"WAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Utah Valley Wolverines",c:"WAC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Seattle Redhawks",c:"WAC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Troy Trojans",c:"Sun Belt",w:5,r:5,g:5,s:5,q:3,h:6,e:3,i:9,x:18},
-{n:"Georgia Southern Eagles",c:"Sun Belt",w:5,r:5,g:5,s:5,q:3,h:6,e:3,i:9,x:17},
-{n:"Arkansas State Red Wolves",c:"Sun Belt",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"App State Mountaineers",c:"Sun Belt",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"South Alabama Jaguars",c:"Sun Belt",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"James Madison Dukes",c:"Sun Belt",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:18},
-{n:"Marshall Thundering Herd",c:"Sun Belt",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:15},
-{n:"Old Dominion Monarchs",c:"Sun Belt",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:15},
-{n:"Louisiana Monroe Warhawks",c:"Sun Belt",w:4,r:4,g:4,s:4,q:3,h:5,e:2,i:9,x:13},
-{n:"Texas State Bobcats",c:"Sun Belt",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Georgia State Panthers",c:"Sun Belt",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Middle Tennessee Blue Raiders",c:"CUSA",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:18},
-{n:"Western Kentucky Hilltoppers",c:"CUSA",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:18},
-{n:"North Texas Mean Green",c:"CUSA",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:17},
-{n:"Rice Owls",c:"CUSA",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:17},
-{n:"UTSA Roadrunners",c:"CUSA",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:14},
-{n:"Charlotte 49ers",c:"CUSA",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Louisiana Tech Bulldogs",c:"CUSA",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"UTEP Miners",c:"CUSA",w:4,r:5,g:4,s:5,q:4,h:6,e:2,i:9,x:15},
-{n:"FIU Panthers",c:"CUSA",w:4,r:4,g:4,s:4,q:3,h:5,e:2,i:9,x:13},
-{n:"Liberty Flames",c:"CUSA",w:7,r:7,g:7,s:7,q:4,h:7,e:3,i:9,x:23},
-{n:"Oakland Golden Grizzlies",c:"Horizon",w:6,r:6,g:6,s:6,q:3,h:6,e:2,i:9,x:20},
-{n:"Green Bay Phoenix",c:"Horizon",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:18},
-{n:"Milwaukee Panthers",c:"Horizon",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Detroit Mercy Titans",c:"Horizon",w:4,r:4,g:4,s:4,q:3,h:5,e:2,i:9,x:13},
-{n:"Cleveland State Vikings",c:"Horizon",w:4,r:4,g:4,s:4,q:3,h:5,e:2,i:9,x:12},
-{n:"Northern Kentucky Norse",c:"Horizon",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Purdue Fort Wayne Mastodons",c:"Horizon",w:3,r:4,g:3,s:4,q:3,h:4,e:2,i:9,x:10},
-{n:"UC Santa Barbara Gauchos",c:"Big West",w:6,r:6,g:6,s:6,q:4,h:6,e:3,i:9,x:20},
-{n:"Long Beach State 49ers",c:"Big West",w:6,r:6,g:6,s:6,q:4,h:6,e:3,i:9,x:20},
-{n:"UC Davis Aggies",c:"Big West",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"Cal Poly Mustangs",c:"Big West",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:14},
-{n:"UC Riverside Highlanders",c:"Big West",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Cal State Fullerton Titans",c:"Big West",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Hawaii Rainbow Warriors",c:"Big West",w:5,r:5,g:5,s:5,q:4,h:6,e:2,i:9,x:17},
-{n:"Austin Peay Governors",c:"ASUN",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Eastern Kentucky Colonels",c:"ASUN",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Jacksonville State Gamecocks",c:"ASUN",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Florida Gulf Coast Eagles",c:"ASUN",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Kennesaw State Owls",c:"ASUN",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Lipscomb Bisons",c:"ASUN",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"North Florida Ospreys",c:"ASUN",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Southeast Missouri State Redhawks",c:"OVC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Tennessee Tech Golden Eagles",c:"OVC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"UT Martin Skyhawks",c:"OVC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Tennessee State Tigers",c:"OVC",w:3,r:4,g:3,s:4,q:3,h:4,e:2,i:9,x:11},
-{n:"Morehead State Eagles",c:"OVC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Eastern Illinois Panthers",c:"OVC",w:3,r:4,g:3,s:4,q:3,h:4,e:2,i:9,x:11},
-{n:"San Diego Toreros",c:"WCC",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:18},
-{n:"San Francisco Dons",c:"WCC",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:17},
-{n:"Santa Clara Broncos",c:"WCC",w:5,r:5,g:5,s:5,q:4,h:6,e:3,i:9,x:17},
-{n:"Pacific Tigers",c:"WCC",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:15},
-{n:"Portland Pilots",c:"WCC",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:13},
-{n:"Pepperdine Waves",c:"WCC",w:4,r:5,g:4,s:5,q:4,h:5,e:3,i:9,x:14},
-{n:"Loyola Marymount Lions",c:"WCC",w:4,r:5,g:4,s:5,q:4,h:5,e:3,i:9,x:14},
-{n:"East Carolina Pirates",c:"AAC",w:4,r:5,g:4,s:5,q:5,h:6,e:3,i:9,x:15},
-{n:"South Florida Bulls",c:"AAC",w:4,r:5,g:4,s:5,q:5,h:6,e:3,i:9,x:14},
-{n:"Gardner-Webb Runnin' Bulldogs",c:"Big South",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Campbell Fighting Camels",c:"Big South",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Longwood Lancers",c:"Big South",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Presbyterian Blue Hose",c:"Big South",w:4,r:5,g:4,s:5,q:2,h:5,e:2,i:9,x:13},
-{n:"UNC-Asheville Bulldogs",c:"Big South",w:4,r:5,g:4,s:5,q:2,h:5,e:2,i:9,x:13},
-{n:"USC Upstate Spartans",c:"Big South",w:4,r:4,g:4,s:4,q:2,h:5,e:2,i:9,x:12},
-{n:"Wagner Seahawks",c:"NEC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"Sacred Heart Pioneers",c:"NEC",w:5,r:5,g:5,s:5,q:3,h:5,e:2,i:9,x:16},
-{n:"Mount St. Mary's Mountaineers",c:"NEC",w:5,r:5,g:5,s:5,q:3,h:6,e:2,i:9,x:17},
-{n:"LIU Sharks",c:"NEC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Merrimack Warriors",c:"NEC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"St. Francis (PA) Red Flash",c:"NEC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:13},
-{n:"Fairleigh Dickinson Knights",c:"NEC",w:4,r:5,g:4,s:5,q:3,h:5,e:2,i:9,x:14},
-{n:"Evansville Purple Aces",c:"MVC",w:4,r:5,g:4,s:5,q:4,h:5,e:2,i:9,x:14},
+// ---- PROJECTED ELITE (KenPom/Torvik top 25) ----
+{n:"Duke Blue Devils",c:"ACC",p:10,r:7,g:0,t:8,h:9,s:5,q:9,e:9,i:8,xp:30,xw:35},
+{n:"Florida Gators",c:"SEC",p:10,r:8,g:0,t:7,h:8,s:7,q:9,e:8,i:9,xp:29,xw:28},
+{n:"Arizona Wildcats",c:"Big 12",p:10,r:7,g:0,t:7,h:8,s:6,q:9,e:9,i:8,xp:29,xw:36},
+{n:"Houston Cougars",c:"Big 12",p:9,r:7,g:0,t:7,h:9,s:7,q:9,e:7,i:9,xp:27,xw:30},
+{n:"Illinois Fighting Illini",c:"Big Ten",p:9,r:8,g:0,t:7,h:9,s:8,q:9,e:8,i:9,xp:28,xw:28},
+{n:"Virginia Cavaliers",c:"ACC",p:9,r:8,g:0,t:7,h:7,s:8,q:8,e:7,i:9,xp:25,xw:25},
+{n:"Louisville Cardinals",c:"ACC",p:9,r:6,g:0,t:9,h:7,s:6,q:8,e:8,i:8,xp:26,xw:24},
+{n:"UConn Huskies",c:"Big East",p:9,r:5,g:0,t:6,h:9,s:6,q:9,e:8,i:8,xp:26,xw:32},
+{n:"Michigan State Spartans",c:"Big Ten",p:9,r:7,g:0,t:5,h:10,s:7,q:9,e:8,i:9,xp:25,xw:27},
+{n:"Tennessee Volunteers",c:"SEC",p:9,r:5,g:0,t:10,h:9,s:5,q:9,e:8,i:9,xp:26,xw:27},
+{n:"Texas Longhorns",c:"SEC",p:8,r:5,g:0,t:9,h:8,s:5,q:9,e:8,i:8,xp:24,xw:27},
+{n:"St. John's Red Storm",c:"Big East",p:8,r:7,g:0,t:7,h:8,s:7,q:8,e:7,i:9,xp:25,xw:27},
+{n:"Alabama Crimson Tide",c:"SEC",p:8,r:6,g:0,t:6,h:8,s:5,q:9,e:8,i:8,xp:24,xw:24},
+{n:"Arkansas Razorbacks",c:"SEC",p:8,r:7,g:0,t:5,h:8,s:6,q:9,e:10,i:8,xp:25,xw:24},
+{n:"BYU Cougars",c:"Big 12",p:8,r:7,g:0,t:8,h:8,s:7,q:8,e:6,i:9,xp:25,xw:24},
+{n:"Kansas Jayhawks",c:"Big 12",p:8,r:6,g:0,t:6,h:10,s:6,q:9,e:9,i:8,xp:24,xw:27},
+{n:"Iowa State Cyclones",c:"Big 12",p:7,r:7,g:0,t:5,h:8,s:7,q:9,e:7,i:9,xp:24,xw:25},
+{n:"Purdue Boilermakers",c:"Big Ten",p:8,r:6,g:0,t:5,h:8,s:7,q:9,e:7,i:8,xp:26,xw:28},
+{n:"Creighton Bluejays",c:"Big East",p:7,r:7,g:0,t:5,h:8,s:7,q:8,e:7,i:9,xp:25,xw:25},
+{n:"Marquette Golden Eagles",c:"Big East",p:8,r:5,g:0,t:7,h:8,s:6,q:8,e:7,i:8,xp:22,xw:24},
+{n:"Vanderbilt Commodores",c:"SEC",p:7,r:7,g:0,t:6,h:7,s:7,q:8,e:7,i:9,xp:24,xw:25},
+{n:"Indiana Hoosiers",c:"Big Ten",p:8,r:5,g:0,t:9,h:7,s:6,q:8,e:7,i:9,xp:23,xw:22},
+{n:"Michigan Wolverines",c:"Big Ten",p:7,r:5,g:0,t:6,h:8,s:5,q:9,e:8,i:8,xp:22,xw:37},
+{n:"Auburn Tigers",c:"SEC",p:7,r:5,g:0,t:5,h:8,s:5,q:9,e:8,i:8,xp:22,xw:23},
+{n:"Texas Tech Red Raiders",c:"Big 12",p:7,r:6,g:0,t:5,h:7,s:7,q:9,e:7,i:8,xp:23,xw:26},
+{n:"Baylor Bears",c:"Big 12",p:7,r:6,g:0,t:6,h:8,s:6,q:9,e:8,i:8,xp:22,xw:24},
+{n:"USC Trojans",c:"Big Ten",p:7,r:6,g:0,t:8,h:7,s:5,q:8,e:7,i:8,xp:22,xw:24},
+{n:"UCLA Bruins",c:"Big Ten",p:7,r:6,g:0,t:6,h:7,s:6,q:8,e:8,i:8,xp:22,xw:24},
+{n:"Xavier Musketeers",c:"Big East",p:7,r:5,g:0,t:9,h:7,s:6,q:7,e:6,i:8,xp:22,xw:18},
+// ---- STRONG POWER CONFERENCE ----
+{n:"Miami Hurricanes",c:"ACC",p:7,r:4,g:0,t:8,h:5,s:5,q:8,e:7,i:8,xp:22,xw:24},
+{n:"Ohio State Buckeyes",c:"Big Ten",p:7,r:6,g:0,t:5,h:7,s:6,q:9,e:6,i:8,xp:23,xw:23},
+{n:"Nebraska Cornhuskers",c:"Big Ten",p:7,r:7,g:0,t:5,h:7,s:7,q:8,e:6,i:9,xp:23,xw:28},
+{n:"Kentucky Wildcats",c:"SEC",p:6,r:5,g:0,t:5,h:7,s:4,q:9,e:9,i:8,xp:20,xw:23},
+{n:"Ole Miss Rebels",c:"SEC",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:7,i:8,xp:21,xw:21},
+{n:"Missouri Tigers",c:"SEC",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:7,i:8,xp:20,xw:20},
+{n:"LSU Tigers",c:"SEC",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:7,i:8,xp:20,xw:20},
+{n:"Mississippi State Bulldogs",c:"SEC",p:5,r:6,g:0,t:4,h:7,s:6,q:8,e:6,i:8,xp:18,xw:18},
+{n:"Oklahoma Sooners",c:"SEC",p:5,r:6,g:0,t:5,h:7,s:6,q:8,e:6,i:8,xp:18,xw:18},
+{n:"South Carolina Gamecocks",c:"SEC",p:5,r:6,g:0,t:4,h:7,s:6,q:7,e:6,i:8,xp:17,xw:17},
+{n:"Texas A&M Aggies",c:"SEC",p:5,r:6,g:0,t:5,h:7,s:6,q:8,e:6,i:8,xp:18,xw:18},
+{n:"Georgia Bulldogs",c:"SEC",p:5,r:5,g:0,t:4,h:7,s:5,q:8,e:6,i:8,xp:17,xw:17},
+{n:"Indiana Hoosiers 2",c:"",p:0,r:0,g:0,t:0,h:0,s:0,q:0,e:0,i:0,xp:0,xw:0},
+{n:"Clemson Tigers",c:"ACC",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:6,i:8,xp:20,xw:20},
+{n:"North Carolina Tar Heels",c:"ACC",p:6,r:4,g:0,t:7,h:4,s:5,q:8,e:8,i:8,xp:21,xw:23},
+{n:"NC State Wolfpack",c:"ACC",p:6,r:5,g:0,t:5,h:4,s:5,q:8,e:7,i:8,xp:20,xw:23},
+{n:"Virginia Tech Hokies",c:"ACC",p:6,r:6,g:0,t:5,h:6,s:6,q:7,e:5,i:9,xp:20,xw:17},
+{n:"Syracuse Orange",c:"ACC",p:6,r:7,g:0,t:5,h:8,s:7,q:7,e:6,i:9,xp:21,xw:21},
+{n:"Pittsburgh Panthers",c:"ACC",p:6,r:6,g:0,t:5,h:7,s:6,q:7,e:6,i:8,xp:20,xw:20},
+{n:"Notre Dame Fighting Irish",c:"ACC",p:5,r:6,g:0,t:4,h:7,s:6,q:8,e:6,i:8,xp:18,xw:18},
+{n:"Wake Forest Demon Deacons",c:"ACC",p:5,r:6,g:0,t:5,h:7,s:6,q:7,e:5,i:9,xp:17,xw:17},
+{n:"Florida State Seminoles",c:"ACC",p:5,r:5,g:0,t:5,h:3,s:5,q:8,e:6,i:8,xp:17,xw:17},
+{n:"Georgia Tech Yellow Jackets",c:"ACC",p:5,r:5,g:0,t:4,h:4,s:5,q:8,e:6,i:8,xp:17,xw:17},
+{n:"Stanford Cardinal",c:"ACC",p:5,r:6,g:0,t:4,h:7,s:6,q:7,e:6,i:8,xp:18,xw:18},
+{n:"SMU Mustangs",c:"ACC",p:5,r:6,g:0,t:5,h:7,s:6,q:7,e:5,i:9,xp:17,xw:17},
+{n:"Boston College Eagles",c:"ACC",p:5,r:6,g:0,t:4,h:6,s:6,q:7,e:5,i:8,xp:17,xw:17},
+{n:"California Golden Bears",c:"ACC",p:4,r:5,g:0,t:3,h:6,s:5,q:7,e:5,i:8,xp:14,xw:14},
+{n:"Cincinnati Bearcats",c:"Big 12",p:6,r:6,g:0,t:5,h:7,s:6,q:7,e:6,i:8,xp:20,xw:20},
+{n:"Oklahoma State Cowboys",c:"Big 12",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:6,i:8,xp:21,xw:21},
+{n:"West Virginia Mountaineers",c:"Big 12",p:5,r:6,g:0,t:5,h:7,s:6,q:8,e:5,i:9,xp:18,xw:18},
+{n:"Kansas State Wildcats",c:"Big 12",p:6,r:5,g:0,t:5,h:4,s:5,q:8,e:6,i:8,xp:21,xw:21},
+{n:"TCU Horned Frogs",c:"Big 12",p:5,r:6,g:0,t:4,h:7,s:6,q:8,e:5,i:9,xp:18,xw:18},
+{n:"UCF Knights",c:"Big 12",p:5,r:6,g:0,t:4,h:7,s:6,q:7,e:5,i:9,xp:18,xw:18},
+{n:"Arizona State Sun Devils",c:"Big 12",p:5,r:6,g:0,t:4,h:6,s:5,q:7,e:6,i:8,xp:17,xw:17},
+{n:"Colorado Buffaloes",c:"Big 12",p:5,r:6,g:0,t:4,h:6,s:5,q:7,e:5,i:8,xp:17,xw:17},
+{n:"Villanova Wildcats",c:"Big East",p:6,r:5,g:0,t:6,h:6,s:6,q:8,e:7,i:9,xp:21,xw:21},
+{n:"Providence Friars",c:"Big East",p:5,r:6,g:0,t:5,h:7,s:6,q:7,e:5,i:9,xp:18,xw:18},
+{n:"Georgetown Hoyas",c:"Big East",p:5,r:7,g:0,t:5,h:7,s:7,q:8,e:6,i:9,xp:18,xw:18},
+{n:"Seton Hall Pirates",c:"Big East",p:5,r:6,g:0,t:4,h:7,s:6,q:7,e:5,i:9,xp:17,xw:17},
+{n:"Butler Bulldogs",c:"Big East",p:5,r:6,g:0,t:5,h:7,s:6,q:7,e:5,i:9,xp:17,xw:17},
+{n:"DePaul Blue Demons",c:"Big East",p:3,r:5,g:0,t:3,h:6,s:5,q:6,e:4,i:8,xp:11,xw:11},
+// ---- BIG TEN OTHERS ----
+{n:"Wisconsin Badgers",c:"Big Ten",p:6,r:7,g:0,t:5,h:8,s:7,q:8,e:6,i:9,xp:21,xw:22},
+{n:"Maryland Terrapins",c:"Big Ten",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:7,i:8,xp:21,xw:21},
+{n:"Oregon Ducks",c:"Big Ten",p:6,r:6,g:0,t:6,h:7,s:6,q:8,e:7,i:8,xp:21,xw:21},
+{n:"Penn State Nittany Lions",c:"Big Ten",p:6,r:6,g:0,t:5,h:7,s:6,q:8,e:6,i:8,xp:21,xw:21},
+{n:"Washington Huskies",c:"Big Ten",p:5,r:6,g:0,t:5,h:6,s:6,q:7,e:6,i:8,xp:18,xw:18},
+{n:"Iowa Hawkeyes",c:"Big Ten",p:5,r:5,g:0,t:5,h:4,s:5,q:8,e:5,i:8,xp:18,xw:18},
+{n:"Minnesota Golden Gophers",c:"Big Ten",p:5,r:5,g:0,t:5,h:4,s:5,q:8,e:5,i:8,xp:18,xw:18},
+{n:"Northwestern Wildcats",c:"Big Ten",p:5,r:6,g:0,t:4,h:7,s:6,q:7,e:5,i:9,xp:17,xw:17},
+{n:"Rutgers Scarlet Knights",c:"Big Ten",p:5,r:6,g:0,t:4,h:7,s:6,q:7,e:5,i:9,xp:17,xw:17},
+// ---- HIDDEN GEMS (Projected 20+ wins, outside top 25) ----
+{n:"Gonzaga Bulldogs",c:"WCC",p:8,r:7,g:7,t:5,h:10,s:7,q:7,e:7,i:9,xp:26,xw:26},
+{n:"Grand Canyon Antelopes",c:"WAC",p:8,r:8,g:10,t:6,h:8,s:8,q:5,e:5,i:9,xp:26,xw:27},
+{n:"Utah State Aggies",c:"MWC",p:8,r:8,g:9,t:5,h:7,s:8,q:6,e:5,i:9,xp:25,xw:27},
+{n:"Miami (OH) RedHawks",c:"MAC",p:8,r:7,g:9,t:3,h:7,s:7,q:4,e:4,i:9,xp:25,xw:32},
+{n:"Saint Mary's Gaels",c:"WCC",p:7,r:7,g:8,t:5,h:7,s:8,q:5,e:4,i:9,xp:24,xw:24},
+{n:"San Diego State Aztecs",c:"MWC",p:7,r:7,g:8,t:5,h:8,s:7,q:6,e:5,i:9,xp:23,xw:25},
+{n:"New Mexico Lobos",c:"MWC",p:7,r:8,g:8,t:5,h:7,s:7,q:5,e:4,i:9,xp:23,xw:25},
+{n:"VCU Rams",c:"A-10",p:7,r:7,g:8,t:5,h:8,s:7,q:5,e:4,i:9,xp:23,xw:24},
+{n:"Dayton Flyers",c:"A-10",p:7,r:7,g:6,t:4,h:7,s:7,q:5,e:4,i:9,xp:23,xw:24},
+{n:"Drake Bulldogs",c:"MVC",p:7,r:8,g:9,t:4,h:8,s:8,q:4,e:3,i:9,xp:24,xw:27},
+{n:"South Dakota State Jackrabbits",c:"Summit",p:7,r:8,g:8,t:3,h:7,s:7,q:4,e:3,i:9,xp:24,xw:27},
+{n:"High Point Panthers",c:"Big South",p:7,r:8,g:9,t:4,h:7,s:7,q:3,e:3,i:9,xp:23,xw:24},
+{n:"Vermont Catamounts",c:"Amer. East",p:7,r:7,g:8,t:3,h:7,s:7,q:3,e:2,i:9,xp:24,xw:24},
+{n:"Yale Bulldogs",c:"Ivy",p:7,r:7,g:7,t:3,h:7,s:7,q:4,e:3,i:9,xp:24,xw:24},
+{n:"Colgate Raiders",c:"Patriot",p:7,r:7,g:8,t:2,h:7,s:7,q:3,e:2,i:9,xp:24,xw:24},
+{n:"Saint Louis Billikens",c:"A-10",p:6,r:7,g:7,t:4,h:7,s:7,q:5,e:4,i:9,xp:22,xw:22},
+{n:"Murray State Racers",c:"MVC",p:7,r:7,g:7,t:3,h:7,s:7,q:4,e:3,i:9,xp:23,xw:24},
+{n:"Belmont Bruins",c:"MVC",p:7,r:7,g:7,t:3,h:7,s:7,q:4,e:3,i:9,xp:23,xw:24},
+{n:"Loyola Chicago Ramblers",c:"MVC",p:7,r:7,g:7,t:3,h:7,s:7,q:4,e:3,i:9,xp:23,xw:23},
+{n:"Oral Roberts Golden Eagles",c:"Summit",p:7,r:7,g:8,t:3,h:7,s:7,q:3,e:3,i:9,xp:23,xw:24},
+{n:"Winthrop Eagles",c:"Big South",p:6,r:7,g:7,t:3,h:7,s:7,q:3,e:3,i:9,xp:22,xw:23},
+{n:"Liberty Flames",c:"CUSA",p:7,r:7,g:7,t:3,h:7,s:7,q:4,e:3,i:9,xp:23,xw:23},
+{n:"Iona Gaels",c:"MAAC",p:7,r:7,g:7,t:3,h:7,s:7,q:3,e:3,i:9,xp:22,xw:23},
+{n:"Princeton Tigers",c:"Ivy",p:6,r:7,g:6,t:3,h:7,s:7,q:4,e:3,i:9,xp:21,xw:21},
+{n:"Army Black Knights",c:"Patriot",p:6,r:7,g:6,t:2,h:7,s:7,q:3,e:2,i:9,xp:21,xw:21},
+{n:"Northern Iowa Panthers",c:"MVC",p:6,r:6,g:6,t:3,h:7,s:6,q:4,e:3,i:9,xp:21,xw:21},
+{n:"New Mexico State Aggies",c:"WAC",p:6,r:6,g:6,t:3,h:7,s:6,q:4,e:3,i:9,xp:21,xw:21},
+{n:"Louisiana Ragin' Cajuns",c:"Sun Belt",p:6,r:6,g:6,t:3,h:7,s:6,q:4,e:3,i:9,xp:22,xw:22},
+{n:"Florida Atlantic Owls",c:"CUSA",p:6,r:6,g:6,t:4,h:7,s:6,q:4,e:3,i:9,xp:22,xw:22},
+{n:"Wright State Raiders",c:"Horizon",p:6,r:6,g:6,t:3,h:7,s:6,q:3,e:2,i:9,xp:21,xw:21},
+{n:"North Dakota State Bison",c:"Summit",p:6,r:6,g:6,t:3,h:7,s:6,q:3,e:2,i:9,xp:22,xw:22},
+{n:"Montana Grizzlies",c:"Big Sky",p:6,r:6,g:6,t:3,h:7,s:6,q:3,e:2,i:9,xp:21,xw:21},
+{n:"UC Irvine Anteaters",c:"Big West",p:6,r:6,g:6,t:3,h:7,s:6,q:4,e:3,i:9,xp:22,xw:22},
+{n:"Hofstra Pride",c:"CAA",p:6,r:6,g:6,t:3,h:7,s:6,q:4,e:3,i:9,xp:21,xw:21},
+{n:"Memphis Tigers",c:"AAC",p:6,r:6,g:5,t:5,h:7,s:6,q:6,e:7,i:8,xp:21,xw:21},
+{n:"Wichita State Shockers",c:"AAC",p:6,r:6,g:5,t:4,h:7,s:6,q:5,e:4,i:9,xp:20,xw:20},
+// ---- STRONG MID-MAJOR ----
+{n:"Davidson Wildcats",c:"A-10",p:6,r:6,g:5,t:3,h:7,s:6,q:5,e:3,i:9,xp:20,xw:20},
+{n:"St. Bonaventure Bonnies",c:"A-10",p:6,r:6,g:5,t:3,h:7,s:7,q:5,e:3,i:9,xp:20,xw:20},
+{n:"Duquesne Dukes",c:"A-10",p:6,r:6,g:5,t:3,h:7,s:6,q:5,e:3,i:9,xp:20,xw:20},
+{n:"Richmond Spiders",c:"A-10",p:5,r:6,g:5,t:3,h:7,s:6,q:5,e:3,i:9,xp:18,xw:18},
+{n:"Rhode Island Rams",c:"A-10",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:18,xw:18},
+{n:"George Mason Patriots",c:"A-10",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:18,xw:18},
+{n:"UMass Minutemen",c:"A-10",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:17,xw:17},
+{n:"Colorado State Rams",c:"MWC",p:6,r:6,g:5,t:3,h:7,s:6,q:5,e:3,i:9,xp:20,xw:20},
+{n:"UNLV Rebels",c:"MWC",p:6,r:6,g:5,t:4,h:7,s:6,q:5,e:4,i:8,xp:21,xw:21},
+{n:"Boise State Broncos",c:"MWC",p:5,r:6,g:5,t:3,h:7,s:6,q:5,e:4,i:9,xp:18,xw:18},
+{n:"Nevada Wolf Pack",c:"MWC",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:18,xw:18},
+{n:"Air Force Falcons",c:"MWC",p:5,r:6,g:5,t:2,h:7,s:7,q:5,e:3,i:9,xp:18,xw:18},
+{n:"Fresno State Bulldogs",c:"MWC",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:17,xw:17},
+{n:"Wyoming Cowboys",c:"MWC",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:17,xw:17},
+{n:"UAB Blazers",c:"AAC",p:6,r:6,g:5,t:4,h:7,s:6,q:5,e:3,i:9,xp:20,xw:20},
+{n:"Temple Owls",c:"AAC",p:5,r:6,g:5,t:3,h:6,s:6,q:6,e:4,i:9,xp:17,xw:17},
+{n:"Tulane Green Wave",c:"AAC",p:5,r:6,g:5,t:3,h:6,s:6,q:6,e:4,i:9,xp:18,xw:18},
+{n:"Tulsa Golden Hurricane",c:"AAC",p:5,r:6,g:5,t:3,h:6,s:6,q:5,e:3,i:9,xp:17,xw:17},
+{n:"East Carolina Pirates",c:"AAC",p:4,r:5,g:4,t:3,h:6,s:5,q:5,e:3,i:9,xp:15,xw:15},
+{n:"South Florida Bulls",c:"AAC",p:4,r:5,g:4,t:3,h:6,s:5,q:5,e:3,i:9,xp:14,xw:14},
+{n:"North Texas Mean Green",c:"AAC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Charlotte 49ers",c:"AAC",p:4,r:5,g:4,t:3,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Rice Owls",c:"AAC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"UTSA Roadrunners",c:"AAC",p:4,r:5,g:4,t:3,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"Harvard Crimson",c:"Ivy",p:5,r:6,g:5,t:3,h:6,s:6,q:4,e:3,i:9,xp:18,xw:18},
+{n:"Penn Quakers",c:"Ivy",p:5,r:6,g:5,t:3,h:6,s:6,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Dartmouth Big Green",c:"Ivy",p:5,r:6,g:5,t:2,h:6,s:6,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Cornell Big Red",c:"Ivy",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:3,i:9,xp:14,xw:14},
+{n:"Columbia Lions",c:"Ivy",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:3,i:9,xp:14,xw:14},
+{n:"Brown Bears",c:"Ivy",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:3,i:9,xp:13,xw:13},
+{n:"Bucknell Bison",c:"Patriot",p:5,r:6,g:5,t:2,h:6,s:6,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Lehigh Mountain Hawks",c:"Patriot",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Navy Midshipmen",c:"Patriot",p:5,r:6,g:5,t:2,h:6,s:6,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Holy Cross Crusaders",c:"Patriot",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Lafayette Leopards",c:"Patriot",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Boston University Terriers",c:"Patriot",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"American Eagles",c:"Patriot",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Loyola Maryland Greyhounds",c:"Patriot",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+// ---- MAAC ----
+{n:"Quinnipiac Bobcats",c:"MAAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Saint Peter's Peacocks",c:"MAAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Fairfield Stags",c:"MAAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Siena Saints",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Manhattan Jaspers",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Rider Broncs",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Marist Red Foxes",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Monmouth Hawks",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Niagara Purple Eagles",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Canisius Golden Griffins",c:"MAAC",p:3,r:4,g:3,t:2,h:5,s:4,q:3,e:2,i:8,xp:11,xw:11},
+{n:"Mount St. Mary's Mountaineers",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Merrimack Warriors",c:"MAAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Iona Gaels 2",c:"",p:0,r:0,g:0,t:0,h:0,s:0,q:0,e:0,i:0,xp:0,xw:0},
+// ---- BIG SKY ----
+{n:"Montana State Bobcats",c:"Big Sky",p:6,r:6,g:6,t:2,h:6,s:6,q:3,e:2,i:9,xp:20,xw:20},
+{n:"Weber State Wildcats",c:"Big Sky",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Northern Colorado Bears",c:"Big Sky",p:5,r:5,g:5,t:2,h:5,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Eastern Washington Eagles",c:"Big Sky",p:5,r:5,g:5,t:2,h:5,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Sacramento State Hornets",c:"Big Sky",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Idaho Vandals",c:"Big Sky",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Portland State Vikings",c:"Big Sky",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Southern Utah Thunderbirds",c:"Big Sky",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Idaho State Bengals",c:"Big Sky",p:4,r:4,g:4,t:2,h:4,s:4,q:3,e:2,i:9,xp:13,xw:13},
+// ---- SUMMIT ----
+{n:"South Dakota Coyotes",c:"Summit",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"North Dakota Fighting Hawks",c:"Summit",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Denver Pioneers",c:"Summit",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:18,xw:18},
+{n:"Omaha Mavericks",c:"Summit",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"St. Thomas Tommies",c:"Summit",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Kansas City Roos",c:"Summit",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- SOUTHERN ----
+{n:"Furman Paladins",c:"SoCon",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Wofford Terriers",c:"SoCon",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"East Tennessee State Buccaneers",c:"SoCon",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Chattanooga Mocs",c:"SoCon",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Samford Bulldogs",c:"SoCon",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Western Carolina Catamounts",c:"SoCon",p:3,r:4,g:3,t:2,h:5,s:4,q:3,e:2,i:9,xp:11,xw:11},
+{n:"VMI Keydets",c:"SoCon",p:3,r:4,g:3,t:2,h:5,s:4,q:3,e:2,i:8,xp:11,xw:11},
+{n:"Mercer Bears",c:"SoCon",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"The Citadel Bulldogs",c:"SoCon",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+// ---- AMERICA EAST ----
+{n:"UMBC Retrievers",c:"Amer. East",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Stony Brook Seawolves",c:"Amer. East",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Albany Great Danes",c:"Amer. East",p:5,r:5,g:5,t:2,h:5,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"UMass Lowell River Hawks",c:"Amer. East",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"New Hampshire Wildcats",c:"Amer. East",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Maine Black Bears",c:"Amer. East",p:3,r:4,g:3,t:2,h:5,s:4,q:3,e:2,i:9,xp:11,xw:11},
+{n:"Binghamton Bearcats",c:"Amer. East",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+{n:"Hartford Hawks",c:"Amer. East",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+{n:"Bryant Bulldogs",c:"Amer. East",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- CAA ----
+{n:"Drexel Dragons",c:"CAA",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"Delaware Fightin Blue Hens",c:"CAA",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"Towson Tigers",c:"CAA",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"Northeastern Huskies",c:"CAA",p:5,r:6,g:5,t:3,h:6,s:6,q:4,e:3,i:9,xp:18,xw:18},
+{n:"William & Mary Tribe",c:"CAA",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"Elon Phoenix",c:"CAA",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"UNCW Seahawks",c:"CAA",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"Charleston Cougars",c:"CAA",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:18,xw:18},
+// ---- MEAC ----
+{n:"Norfolk State Spartans",c:"MEAC",p:5,r:5,g:5,t:2,h:6,s:5,q:2,e:2,i:9,xp:17,xw:17},
+{n:"Morgan State Bears",c:"MEAC",p:5,r:5,g:5,t:2,h:6,s:5,q:2,e:2,i:9,xp:17,xw:17},
+{n:"Hampton Pirates",c:"MEAC",p:4,r:5,g:4,t:2,h:5,s:5,q:2,e:2,i:9,xp:14,xw:14},
+{n:"Coppin State Eagles",c:"MEAC",p:3,r:4,g:3,t:2,h:5,s:4,q:2,e:2,i:9,xp:11,xw:11},
+{n:"Delaware State Hornets",c:"MEAC",p:3,r:4,g:3,t:2,h:4,s:4,q:2,e:2,i:9,xp:10,xw:10},
+{n:"South Carolina State Bulldogs",c:"MEAC",p:3,r:4,g:3,t:2,h:5,s:4,q:2,e:2,i:9,xp:11,xw:11},
+{n:"Howard Bison",c:"MEAC",p:4,r:5,g:4,t:2,h:5,s:5,q:2,e:2,i:9,xp:14,xw:14},
+{n:"Maryland Eastern Shore Hawks",c:"MEAC",p:2,r:3,g:2,t:1,h:4,s:3,q:2,e:2,i:8,xp:7,xw:7},
+// ---- SWAC ----
+{n:"Grambling Tigers",c:"SWAC",p:5,r:5,g:5,t:2,h:6,s:5,q:2,e:2,i:9,xp:17,xw:17},
+{n:"Southern Jaguars",c:"SWAC",p:5,r:5,g:5,t:2,h:6,s:5,q:2,e:2,i:9,xp:17,xw:17},
+{n:"Jackson State Tigers",c:"SWAC",p:5,r:5,g:5,t:2,h:6,s:5,q:2,e:2,i:9,xp:16,xw:16},
+{n:"Texas Southern Tigers",c:"SWAC",p:5,r:5,g:5,t:2,h:6,s:5,q:2,e:2,i:9,xp:17,xw:17},
+{n:"Prairie View A&M Panthers",c:"SWAC",p:5,r:5,g:5,t:2,h:5,s:5,q:2,e:2,i:9,xp:17,xw:17},
+{n:"Alabama A&M Bulldogs",c:"SWAC",p:4,r:4,g:4,t:2,h:5,s:4,q:2,e:2,i:9,xp:12,xw:12},
+{n:"Alabama State Hornets",c:"SWAC",p:4,r:4,g:4,t:2,h:5,s:4,q:2,e:2,i:9,xp:13,xw:13},
+{n:"Alcorn State Braves",c:"SWAC",p:4,r:4,g:4,t:2,h:5,s:4,q:2,e:2,i:9,xp:13,xw:13},
+{n:"Florida A&M Rattlers",c:"SWAC",p:4,r:4,g:4,t:2,h:5,s:4,q:2,e:2,i:9,xp:13,xw:13},
+{n:"Bethune-Cookman Wildcats",c:"SWAC",p:3,r:4,g:3,t:2,h:5,s:4,q:2,e:2,i:9,xp:10,xw:10},
+{n:"Mississippi Valley State Delta Devils",c:"SWAC",p:2,r:3,g:2,t:1,h:4,s:3,q:2,e:2,i:8,xp:6,xw:6},
+// ---- MAC ----
+{n:"Bowling Green Falcons",c:"MAC",p:6,r:6,g:6,t:2,h:6,s:6,q:3,e:2,i:9,xp:21,xw:21},
+{n:"Kent State Golden Flashes",c:"MAC",p:6,r:6,g:6,t:2,h:6,s:6,q:3,e:2,i:9,xp:20,xw:20},
+{n:"Akron Zips",c:"MAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Toledo Rockets",c:"MAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Ohio Bobcats",c:"MAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Buffalo Bulls",c:"MAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Ball State Cardinals",c:"MAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Western Michigan Broncos",c:"MAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Central Michigan Chippewas",c:"MAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Eastern Michigan Eagles",c:"MAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Northern Illinois Huskies",c:"MAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- WAC ----
+{n:"Sam Houston Bearkats",c:"WAC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Abilene Christian Wildcats",c:"WAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Stephen F. Austin Lumberjacks",c:"WAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Utah Valley Wolverines",c:"WAC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Seattle Redhawks",c:"WAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Tarleton State Texans",c:"WAC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- SUN BELT ----
+{n:"Troy Trojans",c:"Sun Belt",p:5,r:5,g:5,t:3,h:6,s:5,q:3,e:3,i:9,xp:18,xw:18},
+{n:"Georgia Southern Eagles",c:"Sun Belt",p:5,r:5,g:5,t:3,h:6,s:5,q:3,e:3,i:9,xp:17,xw:17},
+{n:"Arkansas State Red Wolves",c:"Sun Belt",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"App State Mountaineers",c:"Sun Belt",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"South Alabama Jaguars",c:"Sun Belt",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"James Madison Dukes",c:"Sun Belt",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:18,xw:18},
+{n:"Marshall Thundering Herd",c:"Sun Belt",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:15,xw:15},
+{n:"Old Dominion Monarchs",c:"Sun Belt",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:15,xw:15},
+{n:"Louisiana Monroe Warhawks",c:"Sun Belt",p:4,r:4,g:4,t:2,h:5,s:4,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Texas State Bobcats",c:"Sun Belt",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Georgia State Panthers",c:"Sun Belt",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Southern Miss Golden Eagles",c:"Sun Belt",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- CUSA ----
+{n:"Middle Tennessee Blue Raiders",c:"CUSA",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:18,xw:18},
+{n:"Western Kentucky Hilltoppers",c:"CUSA",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:18,xw:18},
+{n:"Louisiana Tech Bulldogs",c:"CUSA",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"UTEP Miners",c:"CUSA",p:4,r:5,g:4,t:2,h:6,s:5,q:4,e:2,i:9,xp:15,xw:15},
+{n:"FIU Panthers",c:"CUSA",p:4,r:4,g:4,t:2,h:5,s:4,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Jacksonville State Gamecocks",c:"CUSA",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"New Mexico State Aggies 2",c:"",p:0,r:0,g:0,t:0,h:0,s:0,q:0,e:0,i:0,xp:0,xw:0},
+// ---- HORIZON ----
+{n:"Oakland Golden Grizzlies",c:"Horizon",p:6,r:6,g:6,t:2,h:6,s:6,q:3,e:2,i:9,xp:20,xw:20},
+{n:"Green Bay Phoenix",c:"Horizon",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:18,xw:18},
+{n:"Milwaukee Panthers",c:"Horizon",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Detroit Mercy Titans",c:"Horizon",p:4,r:4,g:4,t:2,h:5,s:4,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Cleveland State Vikings",c:"Horizon",p:4,r:4,g:4,t:2,h:5,s:4,q:3,e:2,i:9,xp:12,xw:12},
+{n:"Northern Kentucky Norse",c:"Horizon",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Purdue Fort Wayne Mastodons",c:"Horizon",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+{n:"Youngstown State Penguins",c:"Horizon",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Robert Morris Colonials",c:"Horizon",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- BIG WEST ----
+{n:"UC Santa Barbara Gauchos",c:"Big West",p:6,r:6,g:6,t:3,h:6,s:6,q:4,e:3,i:9,xp:20,xw:20},
+{n:"Long Beach State 49ers",c:"Big West",p:5,r:6,g:5,t:3,h:5,s:6,q:4,e:3,i:9,xp:19,xw:20},
+{n:"UC Davis Aggies",c:"Big West",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"Cal Poly Mustangs",c:"Big West",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"UC Riverside Highlanders",c:"Big West",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Cal State Fullerton Titans",c:"Big West",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Hawaii Rainbow Warriors",c:"Big West",p:5,r:5,g:5,t:2,h:6,s:5,q:4,e:2,i:9,xp:17,xw:17},
+{n:"UC San Diego Tritons",c:"Big West",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+// ---- ASUN ----
+{n:"Austin Peay Governors",c:"ASUN",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Eastern Kentucky Colonels",c:"ASUN",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Florida Gulf Coast Eagles",c:"ASUN",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Kennesaw State Owls",c:"ASUN",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Lipscomb Bisons",c:"ASUN",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"North Florida Ospreys",c:"ASUN",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Bellarmine Knights",c:"ASUN",p:4,r:4,g:4,t:2,h:5,s:4,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Queens Royals",c:"ASUN",p:4,r:4,g:4,t:2,h:5,s:4,q:3,e:2,i:9,xp:12,xw:12},
+{n:"Stetson Hatters",c:"ASUN",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+// ---- OVC ----
+{n:"Southeast Missouri State Redhawks",c:"OVC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Tennessee Tech Golden Eagles",c:"OVC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"UT Martin Skyhawks",c:"OVC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Tennessee State Tigers",c:"OVC",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:11,xw:11},
+{n:"Morehead State Eagles",c:"OVC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Eastern Illinois Panthers",c:"OVC",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:11,xw:11},
+{n:"SIU Edwardsville Cougars",c:"OVC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Little Rock Trojans",c:"OVC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Lindenwood Lions",c:"OVC",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+// ---- WCC ----
+{n:"San Diego Toreros",c:"WCC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:18,xw:18},
+{n:"San Francisco Dons",c:"WCC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Santa Clara Broncos",c:"WCC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Pacific Tigers",c:"WCC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:15,xw:15},
+{n:"Portland Pilots",c:"WCC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:13,xw:13},
+{n:"Pepperdine Waves",c:"WCC",p:4,r:5,g:4,t:3,h:5,s:5,q:4,e:3,i:9,xp:14,xw:14},
+{n:"Loyola Marymount Lions",c:"WCC",p:4,r:5,g:4,t:3,h:5,s:5,q:4,e:3,i:9,xp:14,xw:14},
+{n:"Oregon State Beavers",c:"WCC",p:4,r:5,g:4,t:3,h:5,s:5,q:4,e:3,i:9,xp:14,xw:14},
+{n:"Washington State Cougars",c:"WCC",p:4,r:5,g:4,t:3,h:5,s:5,q:4,e:3,i:9,xp:14,xw:14},
+// ---- BIG SOUTH ----
+{n:"Gardner-Webb Runnin' Bulldogs",c:"Big South",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Campbell Fighting Camels",c:"Big South",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Longwood Lancers",c:"Big South",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Presbyterian Blue Hose",c:"Big South",p:4,r:5,g:4,t:2,h:5,s:5,q:2,e:2,i:9,xp:13,xw:13},
+{n:"UNC-Asheville Bulldogs",c:"Big South",p:4,r:5,g:4,t:2,h:5,s:5,q:2,e:2,i:9,xp:13,xw:13},
+{n:"USC Upstate Spartans",c:"Big South",p:4,r:4,g:4,t:2,h:5,s:4,q:2,e:2,i:9,xp:12,xw:12},
+{n:"Radford Highlanders",c:"Big South",p:4,r:5,g:4,t:2,h:5,s:5,q:2,e:2,i:9,xp:13,xw:13},
+{n:"Charleston Southern Buccaneers",c:"Big South",p:3,r:4,g:3,t:2,h:5,s:4,q:2,e:2,i:9,xp:11,xw:11},
+// ---- NEC ----
+{n:"Wagner Seahawks",c:"NEC",p:5,r:5,g:5,t:2,h:6,s:5,q:3,e:2,i:9,xp:17,xw:17},
+{n:"Sacred Heart Pioneers",c:"NEC",p:5,r:5,g:5,t:2,h:5,s:5,q:3,e:2,i:9,xp:16,xw:16},
+{n:"LIU Sharks",c:"NEC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"St. Francis (PA) Red Flash",c:"NEC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:13,xw:13},
+{n:"Fairleigh Dickinson Knights",c:"NEC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Central Connecticut Blue Devils",c:"NEC",p:4,r:5,g:4,t:2,h:5,s:5,q:3,e:2,i:9,xp:14,xw:14},
+{n:"Chicago State Cougars",c:"NEC",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+{n:"Le Moyne Dolphins",c:"NEC",p:3,r:4,g:3,t:2,h:4,s:4,q:3,e:2,i:9,xp:10,xw:10},
+// ---- MVC OTHERS ----
+{n:"Indiana State Sycamores",c:"MVC",p:5,r:6,g:5,t:3,h:6,s:6,q:4,e:3,i:9,xp:18,xw:18},
+{n:"Bradley Braves",c:"MVC",p:5,r:6,g:5,t:3,h:6,s:6,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Illinois State Redbirds",c:"MVC",p:5,r:6,g:5,t:2,h:6,s:6,q:4,e:2,i:9,xp:17,xw:17},
+{n:"Evansville Purple Aces",c:"MVC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"Valparaiso Beacons",c:"MVC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"Missouri State Bears",c:"MVC",p:5,r:5,g:5,t:3,h:6,s:5,q:4,e:3,i:9,xp:17,xw:17},
+{n:"Southern Illinois Salukis",c:"MVC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
+{n:"UIC Flames",c:"MVC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
 ];
 
 function score(t){
-  return t.w*0.20 + t.r*0.20 + t.g*0.15 + t.s*0.10 + t.q*0.10 + t.h*0.10 + t.e*0.10 + t.i*0.05;
+  return t.p*0.20 + t.r*0.17 + t.g*0.15 + t.t*0.10 + t.h*0.10 + t.s*0.08 + t.q*0.08 + t.e*0.07 + t.i*0.05;
 }
 
 function injLabel(v){return v>=9?"Healthy":v>=7?"Minor":v>=5?"Moderate":"Major";}
 
-function gemTag(g){return g>=7?'<span class="gem-tag"> ★GEM</span>':'';}
+function tags(t){
+  let out='';
+  if(t.g>=8) out+='<span class="gem-tag"> ★GEM</span>';
+  if(t.t>=8) out+='<span class="portal-tag"> ♦PORTAL</span>';
+  return out;
+}
 
 const tiers=[
   {label:"ELITE",min:6.5,bg:"#1a1a2e"},
@@ -387,15 +447,19 @@ const tiers=[
 ];
 
 function render(){
-  // deduplicate by name
-  const seen=new Set(), unique=[];
-  T.forEach(t=>{if(!seen.has(t.n)){seen.add(t.n);unique.push(t);}});
-  unique.sort((a,b)=>{
+  // filter out placeholder/duplicate entries (empty conf) and dedupe by name
+  const seen=new Set(), clean=[];
+  T.forEach(x=>{
+    if(!x.c||x.c==="") return;
+    if(seen.has(x.n)) return;
+    seen.add(x.n); clean.push(x);
+  });
+  clean.sort((a,b)=>{
     const d=score(b)-score(a);
-    return d!==0?d:b.x-a.x;
+    return d!==0?d:b.xp-a.xp;
   });
   let html='', lastTier=-1;
-  unique.forEach((t,i)=>{
+  clean.forEach((t,i)=>{
     const sc=score(t);
     const sc100=Math.round(sc*10);
     let ti=3;
@@ -406,8 +470,8 @@ function render(){
     }
     const pct=Math.min(100,sc100);
     html+=`<div class="team" onclick="this.classList.toggle('out')">
-<div class="row1"><span class="rk">${i+1}.</span><span class="nm">${t.n}${gemTag(t.g)}</span><span class="cf">${t.c}</span><span class="bar-wrap"><span class="bar-fill" style="width:${pct}%"></span></span><span class="sc">${sc100}/100</span></div>
-<div class="row2">Wins: ${t.x} &bull; Returning: ${t.r}/10 &bull; Seniors: ${t.s}/10 &bull; SOS: ${t.q}/10 &bull; Coaching: ${t.h}/10 &bull; Recruiting: ${t.e}/10 &bull; Gem: ${t.g}/10 &bull; Injuries: ${injLabel(t.i)}</div>
+<div class="row1"><span class="rk">${i+1}.</span><span class="nm">${t.n}${tags(t)}</span><span class="cf">${t.c}</span><span class="bar-wrap"><span class="bar-fill" style="width:${pct}%"></span></span><span class="sc">${sc100}/100</span></div>
+<div class="row2">Proj: ${t.xp}W (2026-27) &bull; '25-26: ${t.xw}W &bull; Return: ${t.r} &bull; Portal: ${t.t} &bull; Coach: ${t.h} &bull; Sr: ${t.s} &bull; SOS: ${t.q} &bull; Recr: ${t.e} &bull; Gem: ${t.g} &bull; ${injLabel(t.i)}</div>
 </div>`;
   });
   document.getElementById('list').innerHTML=html;
