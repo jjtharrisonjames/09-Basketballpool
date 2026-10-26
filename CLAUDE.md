@@ -20,27 +20,36 @@ A single-file, printable HTML page (`rankings.html`) with:
 
 User prints the page; strike-through is on-screen only (not needed on paper).
 
-## Algorithm v2 (current)
+## Algorithm v3 (current)
 
-Composite score (0–10 scale per factor, output ×10 as /100):
+**Core philosophy:** Pure wins-based pool. Picks 1–30 should be elite wins teams with no GEM adjustment (nobody's stealing Duke before pick #1). Starting at pick 31, GEMs come into play as a value-pick boost.
+
+### Base composite (used for all teams, decides top 30)
 
 | Factor | Weight | Notes |
 |---|---|---|
-| Projected Wins (2026-27) | 20% | Forward-looking — anchored to KenPom/Torvik preseason |
-| Returning Players | 17% | Minutes/production returning from prior season |
-| Hidden Gem Potential | 15% | See GEM explanation below |
-| Transfer Portal Class | 10% | **NEW in v2** — 2026 portal haul rank |
-| Coaching Stability | 10% | New 2026 hires penalized |
-| Senior Starters | 8% | Experience in close games |
+| Projected Wins (2026-27) | 25% | Forward-looking — anchored to KenPom/Torvik preseason |
+| Returning Players | 20% | Minutes/production returning from prior season |
+| Transfer Portal Class | 12% | 2026 portal haul rank |
+| Coaching Stability | 12% | New 2026 hires penalized |
+| Senior Starters | 10% | Experience in close games |
 | Strength of Schedule | 8% | Quality of competition |
-| Recruiting Class (HS) | 7% | Reduced from v1 since portal matters more now |
+| Recruiting Class (HS) | 8% | HS recruiting rank (portal matters more now) |
 | Injuries | 5% | 10 = fully healthy |
 
 **Tiebreaker:** Projected 2026-27 win total.
 
-**Score formula:**
+**Base score formula (no GEM):**
 ```
-score = p*0.20 + r*0.17 + g*0.15 + t*0.10 + h*0.10 + s*0.08 + q*0.08 + e*0.07 + i*0.05
+baseScore = p*0.25 + r*0.20 + t*0.12 + h*0.12 + s*0.10 + q*0.08 + e*0.08 + i*0.05
+```
+
+### GEM bonus (conditional, picks 31+ only)
+
+For teams ranked 31+ by base score, add `g * 0.15` to the score and re-sort within that pool. Top 30 keep base score. Display shows `+Xgem` annotation on boosted teams.
+
+```
+if (rank > 30) finalScore = baseScore + g * 0.15
 ```
 
 Field keys in the JS data array (`T`):
