@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NCAA Basketball Pool Rankings 2026-27 (v2)</title>
+<title>NCAA Basketball Pool Rankings 2026-27 (v3)</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Courier New',monospace;font-size:11px;color:#111;background:#fff;padding:20px;max-width:960px;margin:0 auto}
@@ -19,7 +19,7 @@ h1{font-size:17px;font-weight:bold;text-align:center;margin-bottom:3px;letter-sp
 .cf{width:80px;color:#666;flex-shrink:0}
 .bar-wrap{width:80px;height:7px;background:#e0e0e0;flex-shrink:0}
 .bar-fill{height:100%;background:#333}
-.sc{width:52px;color:#333;flex-shrink:0}
+.sc{width:95px;color:#333;flex-shrink:0}
 .row2{font-size:9px;color:#888;padding-left:36px;margin-top:1px}
 .gem-tag{color:#b8860b;font-weight:bold}
 .portal-tag{color:#1976d2;font-weight:bold}
@@ -41,34 +41,40 @@ table.wt th{background:#f0f0f0;font-weight:bold}
 </style>
 </head>
 <body>
-<h1>NCAA BASKETBALL POOL RANKINGS 2026-27 <span class="badge">v2</span></h1>
-<p class="sub">Click any team to strike through when drafted &mdash; Anchored to KenPom/Torvik 2026-27 projections &amp; 2026 portal rankings</p>
+<h1>NCAA BASKETBALL POOL RANKINGS 2026-27 <span class="badge">v3</span></h1>
+<p class="sub">Picks 1&ndash;30: pure elite wins &nbsp;&bull;&nbsp; Picks 31+: GEMs come into play &nbsp;&bull;&nbsp; Click to strike through when drafted</p>
 <div id="list"></div>
 <div class="wt-section">
-  <h2>ALGORITHM WEIGHTS (v2)</h2>
+  <h2>ALGORITHM WEIGHTS (v3)</h2>
   <table class="wt">
     <tr><th>Factor</th><th>Weight</th><th>Description</th></tr>
-    <tr><td>Projected Wins (2026-27)</td><td>20%</td><td>Forward-looking win projection from KenPom/Torvik models</td></tr>
-    <tr><td>Returning Players</td><td>17%</td><td>Minutes/production returning from 2025-26 roster</td></tr>
-    <tr><td>Hidden Gem Potential</td><td>15%</td><td>Teams outside top 25 projected for 20+ wins in weak conferences</td></tr>
-    <tr><td>Transfer Portal Class</td><td>10%</td><td>2026 transfer portal haul ranking (NEW in v2)</td></tr>
-    <tr><td>Coaching Stability</td><td>10%</td><td>Head coach tenure &amp; continuity (new 2026 hires penalized)</td></tr>
-    <tr><td>Senior Starters</td><td>8%</td><td>Projected senior starters (experience in close games)</td></tr>
+    <tr><td>Projected Wins (2026-27)</td><td>25%</td><td>Forward-looking win projection from KenPom/Torvik models</td></tr>
+    <tr><td>Returning Players</td><td>20%</td><td>Minutes/production returning from 2025-26 roster</td></tr>
+    <tr><td>Transfer Portal Class</td><td>12%</td><td>2026 transfer portal haul ranking</td></tr>
+    <tr><td>Coaching Stability</td><td>12%</td><td>Head coach tenure &amp; continuity (new 2026 hires penalized)</td></tr>
+    <tr><td>Senior Starters</td><td>10%</td><td>Projected senior starters (experience in close games)</td></tr>
     <tr><td>Strength of Schedule</td><td>8%</td><td>Quality of competition faced</td></tr>
-    <tr><td>Recruiting Class (HS)</td><td>7%</td><td>2026 high school recruiting class rank</td></tr>
+    <tr><td>Recruiting Class (HS)</td><td>8%</td><td>2026 high school recruiting class rank</td></tr>
     <tr><td>Injuries</td><td>5%</td><td>Known injury concerns (10 = fully healthy)</td></tr>
+    <tr><td><strong>GEM Bonus</strong></td><td colspan="2">Applied only to teams ranked 31+. Adds <code>gem &times; 0.15</code> to score, re-sorting the 31+ pool.</td></tr>
     <tr><td><strong>Tiebreaker</strong></td><td colspan="2">Projected 2026-27 win total</td></tr>
   </table>
   <p class="note">
-    <strong>v2 changes from v1:</strong> Replaced "Prior Wins" with forward-looking "Projected Wins" (so champ Michigan drops with heavy roster turnover). Added Transfer Portal factor (Tennessee, Louisville, Texas, Indiana, Xavier, Miami benefit most). Recalibrated gem scores against KenPom/Torvik projections. Applied coaching penalties to 2026 new hires (UNC, Villanova, Miami, Utah, FSU, Minnesota, Iowa, Kansas State, Georgia Tech, NC State).<br>
+    <strong>v3 philosophy:</strong> This is a pure wins-based pool. Picks 1&ndash;30 should be the <em>elite wins</em> teams &mdash; no GEM adjustment, since nobody's going to steal Duke or Florida from you before pick #1. Starting at pick 31, GEMs come into play: teams get a bonus proportional to their GEM score, re-sorting the 31+ pool so late-round value picks (Grand Canyon, Miami OH, Drake) rise appropriately.
+    <br><br>
+    <strong>v3 changes from v2:</strong> Removed Hidden Gem from the main composite. Redistributed its 15% weight across Projected Wins (+5), Returning Players (+3), Portal (+2), Coaching (+2), Seniors (+2), Recruiting (+1). GEM is now a <em>conditional bonus</em> applied only to teams outside the top 30, matching how you'd actually use the sheet.
+    <br><br>
     Scores 0&ndash;10 per factor &rarr; composite &times; 10 displayed as /100. Tiers: Elite &ge;65 &bull; Strong 50&ndash;64 &bull; Mid 35&ndash;49 &bull; Weak &lt;35
   </p>
 
   <h2 style="font-size:13px;margin-top:18px;margin-bottom:6px;letter-spacing:1px">WHAT IS A &star;GEM?</h2>
   <p class="note" style="color:#444">
-    <strong>Hidden Gem</strong> = teams likely to pile up 20+ wins but ranked <em>outside the national top 25</em>, usually in weaker conferences. These are your highest-leverage late-round draft picks.
+    <strong>Hidden Gem</strong> = teams likely to pile up 20+ wins but ranked <em>outside the national top 25</em>, usually in weaker conferences. These are the highest-leverage late-round draft picks.
     <br><br>
-    <strong>Why it matters for your pool:</strong> With ~15 drafters taking 12 teams each (180 total), the top 25 go fast and everyone gets similar wins from them. A team like Grand Canyon in the WAC can win 25&ndash;27 games against weaker opponents and still be available in round 8+. You get elite win production at a bargain draft slot.
+    <strong>How GEMs affect the ranking (v3):</strong> The top 30 picks are sorted purely on projected wins + roster/coaching/portal factors &mdash; <em>no GEM adjustment</em>. Nobody is going to steal Duke, Florida, or Arizona from you before pick #1, so GEM value doesn't apply there.<br>
+    Starting at pick 31, GEMs come into play: a team's score gets <code>gem &times; 1.5</code> added (max +15 points), re-sorting the 31+ pool so analytics darlings like Grand Canyon, Miami OH, and Drake rise above less-valuable alternatives of similar base strength.
+    <br><br>
+    <strong>Why it works:</strong> With ~15 drafters taking 12 teams each (180 total), the top 25&ndash;30 go fast and everyone gets similar wins from them. A team like Grand Canyon in the WAC can win 25&ndash;27 games and still be available in round 8+. You get near-elite win production at a bargain draft slot &mdash; but only because other drafters didn't take them earlier. Reaching for a GEM at pick #1 is a mistake; waiting until pick 31+ is the whole point.
     <br><br>
     <strong>Scoring scale (0&ndash;10):</strong>
   </p>
@@ -80,7 +86,7 @@ table.wt th{background:#f0f0f0;font-weight:bold}
     <tr><td>9&ndash;10</td><td>Elite mid-major, analytics darling, 25+ projected wins</td><td>Grand Canyon, Miami OH, Drake, Utah State</td></tr>
   </table>
   <p class="note">
-    Teams scoring 8+ get the <span class="gem-tag">&star;GEM</span> tag next to their name. <strong>Draft strategy:</strong> let other players chase name recognition early, then stack 2&ndash;3 GEMs in rounds 6&ndash;10 to pad your win total.
+    Teams scoring 8+ get the <span class="gem-tag">&star;GEM</span> tag next to their name. <strong>Draft strategy:</strong> Take the best raw-win team available for picks 1&ndash;5. Fill in power-conference teams through pick 30. Then stack 2&ndash;3 GEMs in rounds 6&ndash;10 to pad your win total.
   </p>
 
   <h2 style="font-size:13px;margin-top:18px;margin-bottom:6px;letter-spacing:1px">WHAT IS &diams;PORTAL?</h2>
@@ -451,8 +457,13 @@ const T=[
 {n:"UIC Flames",c:"MVC",p:4,r:5,g:4,t:2,h:5,s:5,q:4,e:2,i:9,xp:14,xw:14},
 ];
 
-function score(t){
-  return t.p*0.20 + t.r*0.17 + t.g*0.15 + t.t*0.10 + t.h*0.10 + t.s*0.08 + t.q*0.08 + t.e*0.07 + t.i*0.05;
+// v3: base composite without GEM (used for top 30 ranking)
+function baseScore(t){
+  return t.p*0.25 + t.r*0.20 + t.t*0.12 + t.h*0.12 + t.s*0.10 + t.q*0.08 + t.e*0.08 + t.i*0.05;
+}
+// v3: for picks 31+, add GEM bonus
+function gemBoostedScore(t){
+  return baseScore(t) + t.g*0.15;
 }
 
 function injLabel(v){return v>=9?"Healthy":v>=7?"Minor":v>=5?"Moderate":"Major";}
@@ -472,20 +483,30 @@ const tiers=[
 ];
 
 function render(){
-  // filter out placeholder/duplicate entries (empty conf) and dedupe by name
+  // filter placeholders/dupes
   const seen=new Set(), clean=[];
   T.forEach(x=>{
     if(!x.c||x.c==="") return;
     if(seen.has(x.n)) return;
     seen.add(x.n); clean.push(x);
   });
+  // Pass 1: sort by base score (no GEM) for all teams
+  clean.forEach(t=>{t._base=baseScore(t);});
   clean.sort((a,b)=>{
-    const d=score(b)-score(a);
+    const d=b._base-a._base;
     return d!==0?d:b.xp-a.xp;
   });
+  // Pass 2: top 30 keep base; 31+ get GEM bonus and re-sort within that bucket
+  const top30=clean.slice(0,30).map(t=>({...t,_final:t._base,_boosted:false}));
+  const rest=clean.slice(30).map(t=>({...t,_final:gemBoostedScore(t),_boosted:t.g>0}));
+  rest.sort((a,b)=>{
+    const d=b._final-a._final;
+    return d!==0?d:b.xp-a.xp;
+  });
+  const sorted=[...top30,...rest];
   let html='', lastTier=-1;
-  clean.forEach((t,i)=>{
-    const sc=score(t);
+  sorted.forEach((t,i)=>{
+    const sc=t._final;
     const sc100=Math.round(sc*10);
     let ti=3;
     for(let j=0;j<tiers.length;j++){if(sc>=tiers[j].min){ti=j;break;}}
@@ -494,8 +515,9 @@ function render(){
       lastTier=ti;
     }
     const pct=Math.min(100,sc100);
+    const boostNote = t._boosted ? ` <span style="color:#b8860b;font-size:8px">+${Math.round(t.g*1.5)}gem</span>` : '';
     html+=`<div class="team" onclick="this.classList.toggle('out')">
-<div class="row1"><span class="rk">${i+1}.</span><span class="nm">${t.n}${tags(t)}</span><span class="cf">${t.c}</span><span class="bar-wrap"><span class="bar-fill" style="width:${pct}%"></span></span><span class="sc">${sc100}/100</span></div>
+<div class="row1"><span class="rk">${i+1}.</span><span class="nm">${t.n}${tags(t)}</span><span class="cf">${t.c}</span><span class="bar-wrap"><span class="bar-fill" style="width:${pct}%"></span></span><span class="sc">${sc100}/100${boostNote}</span></div>
 <div class="row2">Proj: ${t.xp}W (2026-27) &bull; '25-26: ${t.xw}W &bull; Return: ${t.r} &bull; Portal: ${t.t} &bull; Coach: ${t.h} &bull; Sr: ${t.s} &bull; SOS: ${t.q} &bull; Recr: ${t.e} &bull; Gem: ${t.g} &bull; ${injLabel(t.i)}</div>
 </div>`;
   });
